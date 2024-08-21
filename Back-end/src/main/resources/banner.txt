@@ -1,0 +1,15 @@
+${AnsiColor.GREEN} ██╗                      ${AnsiColor.MAGENTA}   ████████  ███   ███ ███████  ███████  ████████
+${AnsiColor.GREEN}      ██║                 ${AnsiColor.MAGENTA}   ██║       █████████ ██   ██  ██  ███     ██
+${AnsiColor.GREEN} ██║  ██████████████║       ${AnsiColor.GREEN} ████████║ ██  █  ██ ███████  ███████     ██
+${AnsiColor.GREEN} ██║  ██║   ██║   ██║       ${AnsiColor.GREEN}       ██║ ██     ██ ██   ██  ██   ██     ██
+${AnsiColor.GREEN} ██║  ██║   ██║   ██║     ${AnsiColor.RED}   ████████║ ██     ██ ██   ██  ██   ██     ██
+${AnsiColor.GREEN} ╚╝   ╚═════════════╝     ${AnsiColor.RED}   ╚═══════╝ ╚═══════╝ ╚═════╝  ╚═════╝     ╚╝  
+║${AnsiColor.MAGENTA}════════════════════════════════════════════════════════════════════════════════════════ 
+║${AnsiColor.BRIGHT_GREEN}:: Nom de votre application : ${spring.application.name}:                                             ║ 
+║${AnsiColor.MAGENTA}:: Votre Spring Boot Version : ${spring-boot.version}                                                   ║ 
+║${AnsiColor.CYAN}:: Votre Profile Active : ${spring.profiles.active}                                                          ║ 
+║${AnsiColor.YELLOW}:: Consultez vos endpoints via le lien : http://localhost:${server.port}/swagger-ui/index.html   ║
+║                                                                                       ║
+║${AnsiColor.RED}NB :                                                                                   ║
+║${AnsiColor.BRIGHT_BLUE}:: Vous pouvez modifier ce paramètre dans votre fichier application.properties.        ║
+║${AnsiColor.MAGENTA}════════════════════════════════════════════════════════════════════════════════════════

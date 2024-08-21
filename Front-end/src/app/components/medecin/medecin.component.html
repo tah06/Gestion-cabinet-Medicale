@@ -1,0 +1,117 @@
+<div class="container">
+    <header class="header">
+      <h1>Gestion des Médecins</h1>
+      <button class="add-btn" (click)="openPopup('add')">Ajouter un Médecin</button>
+    </header>
+  
+    <section class="medecin-list">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Numéro ONMM</th>
+            <th>Années d'Expérience</th>
+            <th>Spécialite</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medecin of medecins">
+            <td>{{ medecin.id }}</td>
+            <td>{{ medecin.name }}</td>
+            <td>{{ medecin.email }}</td>
+            <td>{{ medecin.phoneNumber }}</td>
+            <td>{{ medecin.ONMM_Number }}</td>
+            <td>{{ medecin.yearsOfExperience }}</td>
+            <td>{{ medecin.specialite }}</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square" (click)="openPopup('edit', medecin)" style="margin-right: 8px; color: rgb(91, 91, 92);"></i>
+              <i class="fa-solid fa-trash" (click)="openPopup('delete', medecin)" style="color: rgb(91, 91, 92);"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+    <!-- Popup Ajouter Médecin -->
+    <div class="fixed-popup" *ngIf="popupVisible === 'add'">
+      <div class="popup-content">
+        <span class="close" (click)="closePopup()">&times;</span>
+        <h2>Ajouter un Médecin</h2>
+        <form (ngSubmit)="saveMedecin()">
+          <label for="name">Nom</label>
+          <input type="text" [(ngModel)]="selectedMedecin.name" id="name" name="name" class="form-field" />
+
+          <label for="email">Email</label>
+          <input type="email" [(ngModel)]="selectedMedecin.email" id="email" name="email" class="form-field" />
+
+          <label for="phoneNumber">Numéro de téléphone</label>
+          <input type="text" [(ngModel)]="selectedMedecin.phoneNumber" id="phoneNumber" name="phoneNumber" class="form-field" />
+
+          <label for="ONMM_Number">Numéro ONMM</label>
+          <input type="text" [(ngModel)]="selectedMedecin.ONMM_Number" id="ONMM_Number" name="ONMM_Number" class="form-field" />
+
+          <label for="yearsOfExperience">Années d'expérience</label>
+          <input type="number" [(ngModel)]="selectedMedecin.yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" class="form-field" />
+
+          <label for="specialite">Spécialité</label>
+          <select [(ngModel)]="selectedMedecin.specialite" id="specialite" name="specialite" class="form-field">
+            <option value="Cardiologie">Cardiologie</option>
+            <option value="Dermatologie">Dermatologie</option>
+            <option value="Neurologie">Neurologie</option>
+            <option value="Pédiatrie">Pédiatrie</option>
+            <option value="Gynécologie">Gynécologie</option>
+          </select> 
+          <button type="submit" class="save-btn">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Popup Modifier Médecin -->
+    <div class="fixed-popup" *ngIf="popupVisible === 'edit'">
+      <div class="popup-content">
+        <span class="close" (click)="closePopup()">&times;</span>
+        <h2>Modifier un Médecin</h2>
+        <form (ngSubmit)="saveMedecin()">
+          <label for="name">Nom</label>
+          <input type="text" [(ngModel)]="selectedMedecin.name" id="name" name="name" class="form-field" />
+
+          <label for="email">Email</label>
+          <input type="email" [(ngModel)]="selectedMedecin.email" id="email" name="email" class="form-field" />
+
+          <label for="phoneNumber">Numéro de téléphone</label>
+          <input type="text" [(ngModel)]="selectedMedecin.phoneNumber" id="phoneNumber" name="phoneNumber" class="form-field" />
+
+          <label for="ONMM_Number">Numéro ONMM</label>
+          <input type="text" [(ngModel)]="selectedMedecin.ONMM_Number" id="ONMM_Number" name="ONMM_Number" class="form-field" />
+
+          <label for="yearsOfExperience">Années d'expérience</label>
+          <input type="number" [(ngModel)]="selectedMedecin.yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" class="form-field" />
+
+          <label for="specialite">Spécialité</label>
+          <select [(ngModel)]="selectedMedecin.specialite" id="specialite" name="specialite" class="form-field">
+            <option value="Cardiologie">Cardiologie</option>
+            <option value="Dermatologie">Dermatologie</option>
+            <option value="Neurologie">Neurologie</option>
+            <option value="Pédiatrie">Pédiatrie</option>
+            <option value="Gynécologie">Gynécologie</option>
+          </select>
+          <button type="submit" class="save-btn">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Popup Supprimer Médecin -->
+    <div class="fixed-popup" *ngIf="popupVisible === 'delete'">
+      <div class="popup-content">
+        <span class="close" (click)="closePopup()">&times;</span>
+        <h2>Confirmer la Suppression</h2>
+        <p>Êtes-vous sûr de vouloir supprimer ce médecin ?</p>
+        <button class="delete-confirm-btn" (click)="deleteMedecin()">Supprimer</button>
+        <button class="cancel-btn" (click)="closePopup()">Annuler</button>
+      </div>
+    </div>
+</div>

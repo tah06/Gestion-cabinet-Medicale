@@ -1,0 +1,115 @@
+<div class="container">
+  <header class="header">
+    <h1>Gestion des Matériels</h1>
+    <button class="add-btn" (click)="openPopup('add')">Ajouter un Matériel</button>
+  </header>
+
+  <section class="materiel-list">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Fabricant</th>
+          <th>Modèle</th>
+          <th>Numéro de Série</th>
+          <th>Date d'Achat</th>
+          <th>Date de Prochaine Maintenance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let materiel of materiels">
+          <td>{{ materiel.id }}</td>
+          <td>{{ materiel.type }}</td>
+          <td>{{ materiel.manufacturer }}</td>
+          <td>{{ materiel.model }}</td>
+          <td>{{ materiel.serialNumber }}</td>
+          <td>{{ materiel.purshaseDate | date }}</td>
+          <td>{{ materiel.nextMaintenanceDate | date }}</td>
+          <td>
+            <i class="fa-solid fa-pen-to-square" (click)="openPopup('edit', materiel)" style="margin-right: 8px; color: rgb(90, 90, 92);"></i>
+            <i class="fa-solid fa-trash" (click)="openPopup('delete', materiel)" style="color: rgb(90, 90, 92);"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Popup Ajouter Matériel -->
+  <div class="fixed-popup" *ngIf="popupVisible === 'add'">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <h2>Ajouter un Matériel</h2>
+      <form (ngSubmit)="saveMateriel()">
+        <label for="type">Type :</label>
+        <select [(ngModel)]="selectedMateriel.type" id="type" name="type" class="form-field" required>
+          <option *ngFor="let t of types" [value]="t">{{ t }}</option>
+        </select>
+
+        <label for="manufacturer">Fabricant :</label>
+        <select [(ngModel)]="selectedMateriel.manufacturer" id="manufacturer" name="manufacturer" class="form-field" required>
+          <option *ngFor="let m of manufacturers" [value]="m">{{ m }}</option>
+        </select>
+
+        <label for="model">Modèle :</label>
+        <input type="text" id="model" [(ngModel)]="selectedMateriel.model" name="model" class="form-field" required>
+
+        <label for="serialNumber">Numéro de Série :</label>
+        <input type="text" id="serialNumber" [(ngModel)]="selectedMateriel.serialNumber" name="serialNumber" class="form-field" required>
+
+        <label for="purshaseDate">Date d'Achat :</label>
+        <input type="date" id="purshaseDate" [(ngModel)]="selectedMateriel.purshaseDate" name="purshaseDate" required>
+
+        <label for="nextMaintenanceDate">Date de Prochaine Maintenance :</label>
+        <input type="date" id="nextMaintenanceDate" [(ngModel)]="selectedMateriel.nextMaintenanceDate" name="nextMaintenanceDate" required>
+
+        <button type="submit" class="save-btn">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup Modifier Matériel -->
+  <div class="fixed-popup" *ngIf="popupVisible === 'edit'">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <h2>Modifier un Matériel</h2>
+      <form (ngSubmit)="saveMateriel()">
+        <label for="type">Type :</label>
+        <select [(ngModel)]="selectedMateriel.type" id="type" name="type" class="form-field" required>
+          <option *ngFor="let t of types" [value]="t">{{ t }}</option>
+        </select>
+
+        <label for="manufacturer">Fabricant :</label>
+        <select [(ngModel)]="selectedMateriel.manufacturer" id="manufacturer" name="manufacturer" class="form-field" required>
+          <option *ngFor="let m of manufacturers" [value]="m">{{ m }}</option>
+        </select>
+
+        <label for="model">Modèle :</label>
+        <input type="text" id="model" [(ngModel)]="selectedMateriel.model" name="model" class="form-field" required>
+
+        <label for="serialNumber">Numéro de Série :</label>
+        <input type="text" id="serialNumber" [(ngModel)]="selectedMateriel.serialNumber" name="serialNumber" class="form-field" required>
+
+        <label for="purshaseDate">Date d'Achat :</label>
+        <input type="date" id="purshaseDate" [(ngModel)]="selectedMateriel.purshaseDate" name="purshaseDate" required>
+
+        <label for="nextMaintenanceDate">Date de Prochaine Maintenance :</label>
+        <input type="date" id="nextMaintenanceDate" [(ngModel)]="selectedMateriel.nextMaintenanceDate" name="nextMaintenanceDate" required>
+
+        <button type="submit" class="save-btn">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup Supprimer Matériel -->
+  <div class="fixed-popup" *ngIf="popupVisible === 'delete'">
+    <div class="popup-content">
+      <span class="close" (click)="closePopup()">&times;</span>
+      <h2>Confirmer la Suppression</h2>
+      <p>Êtes-vous sûr de vouloir supprimer ce matériel ?</p>
+      <button (click)="deleteMateriel()" class="delete-btn">Supprimer</button>
+      <button (click)="closePopup()" class="cancel-btn">Annuler</button>
+    </div>
+  </div>
+</div>
